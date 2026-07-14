@@ -16,7 +16,9 @@ body {
     background-color: black;
     color: azure;
     height: 80px;
-    padding: 0 20px; /* Gives the items some breathing room from the screen edges */
+    padding: 0 20px; 
+    position: relative;
+    z-index: 9999;
 }
 
 /* This targets the wrapper containing your logo and the "myLab" text */
@@ -55,8 +57,10 @@ body {
     display: flex;
     flex-direction: column;
     gap: 5px;
-    padding: 5px;
-    z-index: 9999; 
+    padding: 5px;         
+    pointer-events: auto;        
+    position: relative;
+    z-index: 10000;
 }
 
 .lines {
