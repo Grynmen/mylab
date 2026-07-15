@@ -56,5 +56,12 @@
 }
 
 .inner P{
-    color: gray
+    color: rgba(255, 255, 255, 0.2); /* White text at 30% opacity */
+  
+}
+
+.inner-card img{
+    border-radius: 5px;
+
+
 }
