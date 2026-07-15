@@ -8,8 +8,8 @@
     text-align: center;
 }
 .outer{
-    min-height: 70vh;
-    width: 50vh;
+    min-height: 60vh;
+    min-width: 200px;
     border-radius: 5px;
     display: flex;
     justify-content: initial;
@@ -34,8 +34,8 @@
 }
 
 .inner {
-    height: 69vh;
-    width: 49vh;
+    min-height: 59vh;
+    min-width: 200px;
     background-color: white;
     border-radius: 5px;
     text-align: center;
@@ -51,12 +51,11 @@
 }
 
 .inner h2{
-    color: rgba(255, 255, 255, 0.2); /* White text at 30% opacity */
-     
+    color: black;
 }
 
 .inner P{
-    color: rgba(255, 255, 255, 0.2); /* White text at 30% opacity */
+    color: black;
   
 }
 
