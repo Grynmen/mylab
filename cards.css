@@ -4,65 +4,52 @@
   justify-content: initial;
   align-items: center;
   min-height: 200vh;
-  background-color: azure;
+  background-color: azure; 
   text-align: center;
-}
-
-/* Register Custom Properties for Shadow Animation */
-@property --shadow-color-1 {
-  syntax: '<color>';
-  inherits: false;
-  initial-value: #ff0055;
-}
-
-@property --shadow-color-2 {
-  syntax: '<color>';
-  inherits: false;
-  initial-value: #7a00ff;
+  padding-top: 50px;       
 }
 
 .outer {
+  position: relative; /* REQUIRED: Sets the anchor for the shadow layer */
   min-height: 60vh;
-  min-width: 90px;
-  border-radius: 5px;
+  min-width: 250px; 
+  border-radius: 8px;
   display: flex;
   justify-content: initial;
   align-items: center;
   padding: 4px;
 
-  /* Background Gradient Setup */
+  /* Card Border Gradient */
   background: linear-gradient(-45deg, #00ffff, #7000ff, #ff00ff, #00ffff);
   background-size: 400% 400%;
-
-  /* Box Shadow Setup */
-  box-shadow: 
-    -10px 10px 30px -5px var(--shadow-color-1),
-     10px 10px 30px -5px var(--shadow-color-2);
-
-  /* --- FIX 1: Run BOTH animations simultaneously using a comma separator --- */
-  animation: 
-    shiftGradient 15s ease infinite, 
-    shift-shadow-colors 6s ease infinite;
+  animation: shiftGradient 15s ease infinite;
+  
+  /* We remove the native box-shadow entirely since mobile breaks it */
+  z-index: 1; 
 }
 
-/* --- FIX 2 & 3: Consolidated and properly closed Keyframe block --- */
-@keyframes shift-shadow-colors {
-  0% {
-    --shadow-color-1: #ff0055;
-    --shadow-color-2: #7a00ff;
-  }
-  33% {
-    --shadow-color-1: #00e5ff;
-    --shadow-color-2: #ff0055;
-  }
-  66% {
-    --shadow-color-1: #7a00ff;
-    --shadow-color-2: #00e5ff;
-  }
-  100% {
-    --shadow-color-1: #ff0055;
-    --shadow-color-2: #7a00ff;
-  }
+/* --- THE MOBILE FIX: The Pseudo-Element Shadow --- */
+.outer::before {
+  content: "";
+  position: absolute;
+  /* Push the shadow slightly down and out, just like your original box-shadow offsets */
+  top: 15px;
+  left: -15px;
+  right: -15px;
+  bottom: -15px;
+  z-index: -1; /* Placed behind the card */
+  
+  /* Mirror the exact gradient pattern used in the border */
+  background: linear-gradient(-45deg, #00ffff, #7000ff, #ff00ff, #00ffff);
+  background-size: 400% 400%;
+  border-radius: 8px;
+  
+  /* Turn the background into a soft, visible glow */
+  filter: blur(30px);
+  opacity: 0.65; 
+  
+  /* Animate the shadow's gradient synchronously with the border */
+  animation: shiftGradient 15s ease infinite;
 }
 
 @keyframes shiftGradient {
@@ -78,8 +65,8 @@
 }
 
 .inner {
-  min-height: 59vh;
-  min-width: 90px;
+  flex: 1; 
+  min-height: calc(60vh - 8px);
   background-color: white;
   border-radius: 5px;
   text-align: center;
@@ -93,10 +80,7 @@
   gap: 15px;                
 }
 
-.inner h3 {
+.inner h3, .inner p {
   color: black;
-}
-
-.inner p {
-  color: black;
+  margin: 0;
 }
