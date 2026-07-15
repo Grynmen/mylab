@@ -8,7 +8,7 @@
 
 }
 
-.grad-border{
+.outer{
     min-height: 70vh;
     width: 50vh;
     border-radius: 5px;
@@ -34,7 +34,7 @@
     }
 }
 
-.inner-card {
+.inner {
     height: 69vh;
     width: 49vh;
     background-color: rgba(0, 0, 0, 0.599);
@@ -51,12 +51,12 @@
     gap: 15px;                /* Optional: Adds a clean, uniform gap between the elements */
 }
 
-.inner-card h2{
+.inner h2{
     color: rgba(255, 255, 255, 0.2); /* White text at 30% opacity */
      
 }
 
-.inner-card P{
+.inner P{
     color: rgba(255, 255, 255, 0.2); /* White text at 30% opacity */
   
 }
