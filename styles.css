@@ -1,65 +1,71 @@
-body {
-    margin: 0px;
-    padding: 0px;
-    font-family: sans-serif; /* Adds a clean, modern look */
+/* ==========================================
+   RESET & BASE STYLES
+   ========================================== */
+* {
+    box-sizing: border-box;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    overflow-x: hidden;
+    height: 100%;
 }
 
 .main {
-    background-color: azure;
-    min-height: 100vh; /* Ensures the azure background covers the whole screen */
+    background-color: #0b0c10;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
 }
 
+/* ==========================================
+   HEADER STYLES
+   ========================================== */
 .header {
     display: flex;
     align-items: center;
-    justify-content: space-between; /* Pushes logo/text to the left, and sidebar/menu to the right */
-    background-color: black;
-    color: azure;
+    justify-content: space-between;
+    background-color: #000000;
+    color: #f0ffff;
     height: 80px;
-    padding: 0 20px; 
+    padding: 0 24px; 
     position: relative;
     z-index: 9999;
 }
 
-/* This targets the wrapper containing your logo and the "myLab" text */
 .headerlogo {
     display: flex;
-    align-items: center; /* Aligns the blue circle and the text vertically in the middle */
-    gap: 12px;           /* Adds a nice gap between the blue circle and the text */
+    align-items: center;
+    gap: 12px;
 }
 
-/* Your paragraph text inside the header */
 .headerlogo p {
-    margin: 0px;
+    margin: 0;
     font-size: 1.5rem;
-    font-weight: bold;
+    font-weight: 700;
 }
 
 .logo {
-    height: 50px; 
-    width: 50px;
+    height: 48px; 
+    width: 48px;
     border-radius: 50%;
     background-image: linear-gradient(200deg, #00ffff 0%, #ff00ff 100%);
     box-shadow: 0 0 15px rgba(0, 255, 255, 0.7);
 }
 
-
-
-
-.hero {
-    padding: 20px;
-    
-}
-
+/* Hamburger Button Reset & Styles */
 .sidebar {
     margin-left: auto; 
     cursor: pointer;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     gap: 5px;
-    padding: 5px;         
-    pointer-events: auto;        
-    position: relative;
+    padding: 6px;
+    background: transparent;
+    border: none;
     z-index: 10000;
 }
 
@@ -68,53 +74,52 @@ body {
     height: 3px;
     background-color: #ffffff; 
     border-radius: 2px;
-    transition: background-color 0.3s ease, transform 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease, opacity 0.3s ease;
 }
-
 
 .sidebar:hover .lines {
     background-color: #ff00ff;
     box-shadow: 0 0 8px rgba(255, 0, 255, 0.8);
 }
 
-/* ==========================================
-   SIDEBAR MENU PANEL STYLES
-   ========================================== */
+/* Active Hamburger State (Optional X-transform when menu is open) */
+.sidebar.active .lines:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+.sidebar.active .lines:nth-child(2) {
+    opacity: 0;
+}
+.sidebar.active .lines:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
 
-/* The Off-Screen Panel Container */
+/* ==========================================
+   SIDEBAR MENU PANEL
+   ========================================== */
 .nav-menu {
     position: fixed;
     top: 0;
     right: 0;
     width: 280px;
-    height: 100vh;
-    background-color: #0d0f14; /* Deep dark space background */
-    padding: 100px 24px 24px 24px; /* Big top padding so links clear the header */
+    height: 100dvh;
+    background-color: #0d0f14;
+    padding: 100px 24px 24px 24px;
     box-shadow: -5px 0 25px rgba(0, 0, 0, 0.5);
-    
-    /* Layer directly under the interactive trigger */
     z-index: 9998; 
-    
-    /* Layout for menu items */
     display: flex;
     flex-direction: column;
-    gap: 15px;
-
-    /* Hidden State (Shifted off-screen) */
+    gap: 12px;
     transform: translateX(100%);
     transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-/* Open State (Slides into view) */
 .nav-menu.open {
     transform: translateX(0);
 }
 
-/* Styling the links inside the panel */
 .nav-menu a {
     color: #cbd5e1;
     text-decoration: none;
-    font-family: sans-serif;
     font-size: 1.1rem;
     font-weight: 500;
     padding: 12px 16px;
@@ -122,32 +127,28 @@ body {
     transition: all 0.2s ease;
 }
 
-/* Hover highlights matching the neon magenta theme */
 .nav-menu a:hover {
-    background-color: #1e1b29; /* Dark purple undertone */
-    color: #ff00ff;           /* Neon magenta text glow */
+    background-color: #1e1b29;
+    color: #ff00ff;
     text-shadow: 0 0 8px rgba(255, 0, 255, 0.5);
 }
 
-}
-
 /* ==========================================
-   ANIMATED AURORA HERO STYLES
+   ANIMATED AURORA HERO
    ========================================== */
-
 .hero {
     position: relative;
-    height: 100vh;             /* Takes up 60% of the screen height */
+    height: calc(100dvh - 80px); /* Perfect viewport fit under the header */
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #0b0c10; /* Deep space-black base */
-    overflow: hidden;          /* Keeps the glowing blobs from spilling out */
+    background-color: #0b0c10;
+    overflow: hidden;
     color: #ffffff;
     text-align: center;
 }
 
-/* Keeps your text above the background animation */
 .hero-content {
     position: relative;
     z-index: 2;
@@ -155,31 +156,32 @@ body {
 }
 
 .hero-content h1 {
-    font-size: 3.5rem;
-    margin: 0 0 12px 0;
-    font-weight: bold;
-    letter-spacing: -1px;
-    text-shadow: 0 0 20px rgba(0, 255, 255, 0.4); /* Subtle cyan text glow */
-}
-
-.hero-content p {
-    font-size: 1.2rem;
-    color: #cbd5e1;
+    font-size: clamp(2.2rem, 5vw, 3.8rem);
     margin: 0;
+    font-weight: 800;
+    letter-spacing: -1px;
+    text-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
 }
 
-/* Base style for the glowing blobs */
+.mylabword {
+    background: linear-gradient(135deg, #00ffff, #ff00ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* ==========================================
+   AURORA BLOBS & KEYFRAMES
+   ========================================== */
 .aurora-blob {
     position: absolute;
     border-radius: 50%;
-    filter: blur(80px); /* Blurs the circles into smooth liquid waves */
+    filter: blur(80px);
     opacity: 0.45;
     mix-blend-mode: screen;
-    pointer-events: none; /* Prevents the blobs from blocking mouse clicks */
+    pointer-events: none;
     z-index: 1;
 }
 
-/* Cyan Blob (Top Left) */
 .blob-1 {
     width: 450px;
     height: 450px;
@@ -189,7 +191,6 @@ body {
     animation: morph-cyan 12s infinite alternate ease-in-out;
 }
 
-/* Magenta Blob (Bottom Right) */
 .blob-2 {
     width: 500px;
     height: 500px;
@@ -199,7 +200,6 @@ body {
     animation: morph-magenta 15s infinite alternate ease-in-out;
 }
 
-/* Royal Blue Blob (Center Deep Tone) */
 .blob-3 {
     width: 350px;
     height: 350px;
@@ -209,42 +209,20 @@ body {
     animation: morph-blue 18s infinite alternate ease-in-out;
 }
 
-/* ==========================================
-   ANIMATION KEYFRAMES (Slow Organic Movement)
-   ========================================== */
-
 @keyframes morph-cyan {
-    0% {
-        transform: translate(0px, 0px) scale(1);
-    }
-    50% {
-        transform: translate(80px, 40px) scale(1.2);
-    }
-    100% {
-        transform: translate(-30px, -50px) scale(0.9);
-    }
+    0% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(80px, 40px) scale(1.2); }
+    100% { transform: translate(-30px, -50px) scale(0.9); }
 }
 
 @keyframes morph-magenta {
-    0% {
-        transform: translate(0px, 0px) scale(1);
-    }
-    50% {
-        transform: translate(-100px, -60px) scale(0.85);
-    }
-    100% {
-        transform: translate(50px, 30px) scale(1.1);
-    }
+    0% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(-100px, -60px) scale(0.85); }
+    100% { transform: translate(50px, 30px) scale(1.1); }
 }
 
 @keyframes morph-blue {
-    0% {
-        transform: translate(0px, 0px) scale(1);
-    }
-    50% {
-        transform: translate(-40px, 60px) scale(1.15);
-    }
-    100% {
-        transform: translate(-80px, -20px) scale(0.9);
-    }
+    0% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(-40px, 60px) scale(1.15); }
+    100% { transform: translate(-80px, -20px) scale(0.9); }
 }
