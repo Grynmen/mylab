@@ -129,7 +129,7 @@ body {
     text-shadow: 0 0 8px rgba(255, 0, 255, 0.5);
 }
 .hero{
-    height: 60vh;
+    height: 100vh;
     background-color: #ff00ff;
     color: azure;
 }
@@ -140,7 +140,7 @@ body {
 
 .hero {
     position: relative;
-    height: 60vh;             /* Takes up 60% of the screen height */
+    height: 100vh;             /* Takes up 60% of the screen height */
     display: flex;
     align-items: center;
     justify-content: center;
