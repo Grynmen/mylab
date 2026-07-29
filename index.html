@@ -1,51 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-   
     <meta charset="UTF-8">
-    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
     <title>myLab</title>
-    
-   
     <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
 </head>
 <body>
-<div class="main">
+    <div class="main">
+        <!-- Header Section -->
+        <header class="header">
+            <div class="headerlogo">
+                <div class="logo"></div>
+                <p>myLab</p>
+            </div>
 
-    <div class="header">
-        <div class="headerlogo">
-            <div class="logo"></div>
-            <p>myLab</p>
-        </div>
-        
-        <!-- The trigger button -->
-        <div class="sidebar" id="menuToggle">
-            <div class="lines"></div>
-            <div class="lines"></div>
-            <div class="lines"></div>
-        </div>
+            <!-- Hamburger Toggle Trigger -->
+            <button class="sidebar" id="menuToggle" aria-label="Toggle Navigation">
+                <div class="lines"></div>
+                <div class="lines"></div>
+                <div class="lines"></div>
+            </button>
+        </header>
+
+        <!-- Sliding Off-Canvas Navigation -->
+        <nav class="nav-menu" id="navMenu">
+            <a href="eenal.html">Eenaal Foundation</a>
+        </nav>
+
+        <!-- Hero Section with Morphing Aurora -->
+        <section class="hero">
+            <div class="aurora-blob blob-1"></div>
+            <div class="aurora-blob blob-2"></div>
+            <div class="aurora-blob blob-3"></div>
+
+            <div class="hero-content">
+                <h1>Welcome to <span class="mylabword">myLab</span></h1>
+            </div>
+        </section>
     </div>
-
-    <!-- ADD THIS: The sliding menu panel -->
-    <nav class="nav-menu" id="navMenu">
-        <a href="eenal.html">Eenaal Foundation</a>
-    </nav>
-
-    <div class="hero">
-    <!-- These generate the morphing neon waves -->
-    <div class="aurora-blob blob-1"></div>
-    <div class="aurora-blob blob-2"></div>
-    <div class="aurora-blob blob-3"></div>
-    
-    <!-- Your text content stays layered safely on top -->
-    <div class="hero-content">
-        <h1>Welcome to <span class="mylabword">myLab</span></h1>
-    </div>
-
-</div>
-    
-    <script src="script.js" defer></script>
 </body>
 </html>
