@@ -128,10 +128,7 @@ body {
     color: #ff00ff;           /* Neon magenta text glow */
     text-shadow: 0 0 8px rgba(255, 0, 255, 0.5);
 }
-.hero{
-    height: 100vh;
-    background-color: #ff00ff;
-    color: azure;
+
 }
 
 /* ==========================================
