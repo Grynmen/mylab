@@ -1,0 +1,617 @@
+/* ==========================================
+   RESET & GLOBAL DESIGN SYSTEM
+   ========================================== */
+*, *::before, *::after {
+    box-sizing: border-box; 
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --bg-main: #F7F4EB;             /* Warm Sand background */
+    --primary-green: #2D3B36;       /* Deep Slate Green */
+    --primary-green-dark: #1C2723;  /* Charcoal Emerald */
+    --accent-terracotta: #D95D39;   /* Warm Rust / Coral */
+    --card-white: #FFFFFF;          /* Crisp White for cards */
+    --text-dark: #1F2925;           /* Primary text */
+    --text-muted: #6B7C73;          /* Secondary text */
+    --border-subtle: #E2E7E3;       /* Subtle card borders */
+    
+    --card-border-radius: 12px;
+    --font-heading: "Radley", serif;
+    --font-body: "Quicksand", sans-serif;
+}
+
+body {
+    background-color: var(--bg-main);
+    font-family: var(--font-body);
+    color: var(--text-dark);
+    line-height: 1.5;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-width: 100%;
+}
+
+/* Typography Base */
+h1, h2, h3, h4 { font-family: var(--font-heading); }
+h1 { font-size: 1.8rem; line-height: 1.2; margin-bottom: 10px; }
+h2 { font-size: 1.5rem; font-weight: 400; margin-bottom: 10px; }
+h3 { font-size: 1.25rem; font-weight: 400; margin-bottom: 8px; }
+h4 { font-size: 1.1rem; font-weight: 400; margin-bottom: 5px; }
+
+p { font-family: var(--font-body); font-size: 0.95rem; }
+
+/* ==========================================
+   1. HEADER & SIDEBAR NAVIGATION
+   ========================================== */
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 20px;
+    background-color: var(--primary-green);
+    position: sticky;
+    top: 0;
+    z-index: 10000; /* Raised header above sidebar */
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+}
+
+.brand-group {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+#headlogo svg {
+    display: block;
+    background-color: transparent !important;
+    border-radius: 6px;
+}
+
+.brand-title {
+    color: #FFFFFF;
+    font-size: 0.95rem;
+    font-weight: 700;
+    line-height: 1.1;
+    margin: 0;
+}
+
+/* Toggle Button Container */
+.menu-toggle {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 30px;
+    height: 30px;
+    position: relative; 
+    z-index: 10002; /* Always above sidebar */
+}
+
+.lines {
+    width: 25px;
+    height: 3px;
+    background-color: #FFFFFF;
+    border-radius: 2px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Toggle 'X' Close Animation and Coral Color */
+.menu-toggle.active .lines {
+    background-color: var(--accent-terracotta);
+}
+
+.menu-toggle.active .lines:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.menu-toggle.active .lines:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle.active .lines:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Sliding Nav Sidebar */
+.nav-menu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 260px;
+    height: 100vh;
+    background-color: var(--primary-green-dark);
+    padding: 90px 24px 24px 24px; /* Added extra top padding so items sit clear of header */
+    box-shadow: -5px 0 25px rgba(0, 0, 0, 0.35);
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    transform: translateX(100%);
+    transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.nav-menu.open { 
+    transform: translateX(0); 
+}
+
+.nav-menu a {
+    color: #E2E7E3;
+    text-decoration: none;
+    font-size: 1.05rem;
+    font-weight: 500;
+    padding: 10px 12px;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+.nav-menu a:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+    color: var(--accent-terracotta);
+}
+
+/* ==========================================
+   2. HERO SECTION
+   ========================================== */
+.hero {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 0 12px;
+}
+
+.hero-img {
+    width: 100%;
+    border-radius: var(--card-border-radius);
+    overflow: hidden;
+}
+
+.hero-img img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    display: block;
+    border-radius: var(--card-border-radius);
+}
+
+.hero-content {
+    background-color: var(--card-white);
+    padding: 24px 20px;
+    border-radius: var(--card-border-radius);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.03);
+    border: 1px solid var(--border-subtle);
+}
+
+.highlight {
+    color: var(--accent-terracotta);
+    font-style: italic;
+}
+
+.CTA {
+    background-color: var(--accent-terracotta);
+    color: #FFFFFF;
+    padding: 10px 28px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    margin-top: 14px;
+    transition: transform 0.15s ease, opacity 0.2s ease;
+}
+
+.CTA:hover {
+    opacity: 0.92;
+    transform: translateY(-1px);
+}
+
+.calen {
+    background-color: var(--primary-green);
+    color: #FFFFFF;
+    padding: 18px 20px;
+    border-radius: var(--card-border-radius);
+}
+
+.calen h4 { color: #FFFFFF; margin-bottom: 8px; }
+.calen p { color: #D1DED6; margin: 4px 0; }
+
+/* ==========================================
+   3. ABOUT & VISION / MISSION
+   ========================================== */
+.who {
+    background-color: var(--primary-green);
+    color: #FFFFFF;
+    margin: 0 12px;
+    padding: 24px 20px;
+    border-radius: var(--card-border-radius);
+}
+
+.who h2, .who h3 { color: #FFFFFF; }
+.who p { color: #E2E7E3; margin-top: 10px; }
+
+.who .logo {
+    margin: 12px 0;
+    display: inline-block;
+    background-color: var(--accent-terracotta);
+    padding: 6px;
+    border-radius: 8px;
+}
+
+.vismis {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin: 0 12px;
+}
+
+.vision, .mission {
+    background-color: var(--card-white);
+    color: var(--text-dark);
+    padding: 24px 20px;
+    border-radius: var(--card-border-radius);
+    border: 1px solid var(--border-subtle);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+}
+
+.vision h3, .mission h3 { color: var(--primary-green); }
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 12px 0;
+}
+
+.imageid {
+    background-color: var(--primary-green);
+    height: 48px;
+    width: 48px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.desig {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.vismiscontent p {
+    font-style: italic;
+    color: #374740;
+}
+
+/* ==========================================
+   4. WHAT WE DO
+   ========================================== */
+.what {
+    margin: 0 12px;
+    padding: 24px 20px;
+    background-color: var(--card-white);
+    border-radius: var(--card-border-radius);
+    border: 1px solid var(--border-subtle);
+}
+
+.what h2 { color: var(--primary-green); }
+
+.whatcards {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin-top: 14px;
+}
+
+.card {
+    background-color: #F2F5F3;
+    border: 1px solid #E0E6E2;
+    padding: 14px 16px;
+    border-radius: 8px;
+    font-weight: 600;
+    color: var(--primary-green);
+}
+
+/* ==========================================
+   5. WORDS OF COMMUNITY (CAROUSEL CARD)
+   ========================================== */
+.words {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 0 12px;
+    padding: 28px 24px;
+    background-color: var(--card-white);
+    color: var(--text-dark);
+    border-radius: var(--card-border-radius);
+    border: 1px solid var(--border-subtle);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+    position: relative;
+    overflow: hidden;
+    min-height: 280px;
+}
+
+/* Header Badge & Date */
+.words-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.words-badge {
+    background-color: rgba(217, 93, 57, 0.1);
+    color: var(--accent-terracotta);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    padding: 6px 12px;
+    border-radius: 20px;
+}
+
+.words-header .date {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+/* Quote Body & Smooth Transition */
+.words-body {
+    position: relative;
+    margin: 12px 0 24px 0;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.quote-mark {
+    font-family: var(--font-heading);
+    font-size: 4rem;
+    line-height: 1;
+    color: var(--accent-terracotta);
+    opacity: 0.2;
+    position: absolute;
+    top: -20px;
+    left: -10px;
+    pointer-events: none;
+}
+
+.userwords {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    line-height: 1.4;
+    color: var(--primary-green-dark);
+    font-style: italic;
+    position: relative;
+    z-index: 1;
+}
+
+/* Card Footer & Profile */
+.words-card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 16px;
+    border-top: 1px solid var(--border-subtle);
+}
+
+.user-prfl {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.PP {
+    width: 42px;
+    height: 42px;
+    background-color: var(--primary-green);
+    color: #FFFFFF;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.username {
+    font-size: 0.95rem;
+    font-weight: 700;
+    display: block;
+    color: var(--primary-green);
+    line-height: 1.1;
+}
+
+.useraddress {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+}
+
+/* Carousel Control Buttons */
+.carousel-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.nav-btn {
+    padding: 8px 14px;
+    border-radius: 6px;
+    border: 1px solid var(--border-subtle);
+    background-color: #FAFBF9;
+    color: var(--primary-green);
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.next-btn {
+    background-color: var(--accent-terracotta);
+    color: #FFFFFF;
+    border-color: var(--accent-terracotta);
+}
+
+.nav-btn:hover {
+    transform: translateY(-1px);
+    opacity: 0.9;
+}
+
+/* ==========================================
+   6. WHY CONTACT US & EVENT HISTORY
+   ========================================== */
+.why {
+    background-color: var(--accent-terracotta);
+    color: #FFFFFF;
+    margin: 0 12px;
+    padding: 24px 20px;
+    border-radius: var(--card-border-radius);
+}
+
+.why h2 { color: #FFFFFF; }
+
+.whygrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin-top: 14px;
+}
+
+.whycard {
+    background-color: rgba(255, 255, 255, 0.12);
+    padding: 14px 16px;
+    border-radius: 8px;
+    font-weight: 500;
+}
+
+.past {
+    margin: 0 12px;
+    padding: 24px 20px;
+    background-color: #E8ECE9;
+    border-radius: var(--card-border-radius);
+}
+
+.past h2 { color: var(--primary-green); }
+
+.past-scroll {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 14px;
+}
+
+.pastcard {
+    display: flex;
+    align-items: center;
+    background-color: var(--card-white);
+    border-radius: 8px;
+    padding: 10px;
+    gap: 14px;
+    border: 1px solid var(--border-subtle);
+}
+
+.pastimg {
+    width: 54px;
+    height: 54px;
+    border-radius: 6px;
+    object-fit: cover;
+}
+
+.pastcontent h4 { color: var(--primary-green); }
+
+/* ==========================================
+   7. PARTNERS & SPONSORS
+   ========================================== */
+.partners, .sponsors {
+    margin: 0 12px;
+    padding: 24px 20px;
+    background-color: var(--card-white);
+    border-radius: var(--card-border-radius);
+    border: 1px solid var(--border-subtle);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.partners h3, .sponsors h3 { color: var(--primary-green); }
+
+.partnercard, .sponsorcard {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    border: 1px solid var(--border-subtle);
+    padding: 10px 14px;
+    border-radius: 8px;
+    background-color: #FAFBF9;
+}
+
+.partnerimg, .sponsorimg {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.Partnerid { font-weight: 700; color: var(--primary-green); }
+
+/* ==========================================
+   8. FOOTER
+   ========================================== */
+.site-footer {
+    background-color: var(--primary-green);
+    color: #FFFFFF;
+    margin: 12px 12px 0 12px;
+    padding: 28px 20px 20px 20px;
+    border-radius: var(--card-border-radius) var(--card-border-radius) 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.site-footer h4 { color: #FFFFFF; }
+.site-footer p { color: #D1DED6; }
+
+.site-footer hr {
+    border: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    margin: 14px 0;
+}
+
+.site-footer ul {
+    list-style: none;
+    margin-top: 6px;
+}
+
+.site-footer li {
+    font-size: 0.9rem;
+    color: #D1DED6;
+    margin-bottom: 4px;
+}
+
+.rightfoot p {
+    font-size: 0.8rem;
+    color: #94A39A;
+}
+
+/* ==========================================
+   DESKTOP & TABLET RESPONSIVE LAYOUT
+   ========================================== */
+@media (min-width: 768px) {
+    .whatcards, .whygrid { 
+        grid-template-columns: 1fr 1fr; 
+    }
+
+    .vismis { 
+        flex-direction: row; 
+    }
+
+    .vismis .vision, .vismis .mission { 
+        flex: 1; 
+    }
+
+    .site-footer { 
+        flex-direction: row; 
+        justify-content: space-between; 
+    }
+}
